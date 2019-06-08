@@ -3,5 +3,7 @@
 @section('title', 'Works')
 
 @section('content')
-    fuck you
+<div class="">
+  <p>This is the Homepage</p>
+</div>
 @endsection
