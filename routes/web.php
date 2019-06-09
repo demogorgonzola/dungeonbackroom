@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('character', 'DnDCharacterController');
+Route::resource('dnd-characters', 'DndCharactersController');

@@ -18,7 +18,7 @@ class NewTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
-                    ->assertPortIs('8001');
+                    ->assertPortIs('8000');
         });
     }
 }

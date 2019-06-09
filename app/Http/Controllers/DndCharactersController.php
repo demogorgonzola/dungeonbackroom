@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\DndCharacter;
 
-class DnDCharacterController extends Controller
+class DndCharactersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class DnDCharacterController extends Controller
      */
     public function index()
     {
-        return view('dndcharacter.index');
+        //
     }
 
     /**
@@ -34,7 +35,13 @@ class DnDCharacterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dndcharacter = new DndCharacter();
+
+        $dndcharacter->name = request('name');
+
+        $dndcharacter->save();
+
+        return redirect('/');
     }
 
     /**

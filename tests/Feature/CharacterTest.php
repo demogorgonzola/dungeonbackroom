@@ -8,11 +8,23 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CharacterTest extends TestCase
 {
+    use RefreshDatabase;
+
     /** @test **/
     public function can_create_a_character()
     {
-        $response = $this->get('character/create');
+        $this->withoutExceptionHandling();
+      //Given
+      $this->actingAs(factory('App\User')->create());
 
-        $response->assertStatus(200);
+      //When
+      $this->post('/dnd-characters', [
+        'name' => 'Teem'
+      ]);
+
+      //Then
+      $this->assertDatabaseHas('dnd_characters', [
+          'name' => 'Teem'
+      ]);
     }
 }
