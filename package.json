@@ -10,10 +10,11 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "serve": "php artisan serve",
         "test": "phpunit tests --color=always",
-        "watch:test": "watch --color npm run --silent test"
+        "watch:test": "watch --color npm run --silent test",
+        "build": "npm install ; composer install ; php artisan dusk:install"
     },
     "devDependencies": {
-        "axios": "^0.18",
+        "axios": "0.19.0",
         "bootstrap": "^4.1.0",
         "cross-env": "^5.1",
         "jquery": "^3.2",
