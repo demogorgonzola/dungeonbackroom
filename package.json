@@ -9,7 +9,11 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "serve": "php artisan serve",
-        "test": "phpunit tests --color=always || true",
+        "test:unit": "echo 'Running Unit Tests...' ; phpunit tests/Unit --color=always || true",
+        "test:feature": "echo 'Running Feature Tests...' ; phpunit tests/Feature --color=always || true",
+        "test:browser": "echo 'Running Browser Tests' ; phpunit tests/Browser --color=always || true",
+        "test": "npm run --silent test:unit ; npm run --silent test:feature",
+        "test:all": "npm run --silent test ; npm run --silent test:browser",
         "watch:test": "watch --color npm run --silent test"
     },
     "devDependencies": {
