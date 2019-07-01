@@ -15,4 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('character', 'DnDCharacterController');
+//NOTE: the path name effects the type hinting in the controller,
+//makes a litte sense, look into it more
+Route::resource('character', 'DndCharacterController');

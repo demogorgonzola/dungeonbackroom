@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\DndCharacter;
 use Illuminate\Http\Request;
 
-class DnDCharacterController extends Controller
+class DndCharacterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class DnDCharacterController extends Controller
      */
     public function index()
     {
-        return view('dndcharacter.index');
+        //
     }
 
     /**
@@ -34,16 +35,20 @@ class DnDCharacterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $character = new DndCharacter();
+        $character->name = $request->input('name');
+        $character->level = $request->input('level');
+        $character->class = $request->input('class');
+        $character->save();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\DndCharacter  $dndCharacter
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(DndCharacter $character)
     {
         //
     }
@@ -51,10 +56,10 @@ class DnDCharacterController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\DndCharacter  $dndCharacter
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(DndCharacter $character)
     {
         //
     }
@@ -63,21 +68,22 @@ class DnDCharacterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\DndCharacter  $dndCharacter
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, DndCharacter $character)
     {
-        //
+        $character->level = $request->input('level');
+        $character->save();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\DndCharacter  $dndCharacter
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DndCharacter $character)
     {
         //
     }
