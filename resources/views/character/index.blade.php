@@ -5,6 +5,6 @@
 @section('content')
     <div class="">
         <p>Hi there!</p>
-        <p>This is the basic index page for dnd characters</p>
+        <p>This is the basic index page for DnD Characters!</p>
     </div>
 @endsection

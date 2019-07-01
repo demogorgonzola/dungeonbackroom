@@ -14,7 +14,7 @@ class DndCharacterController extends Controller
      */
     public function index()
     {
-        //
+        return view('character/index');
     }
 
     /**

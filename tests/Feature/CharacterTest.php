@@ -57,4 +57,15 @@ class CharacterTest extends TestCase
             'level' => $new_level
         ]);
     }
+
+    /**
+     * @test
+     * @return void
+     */
+    public function can_display_many_characters()
+    {
+        $response = $this->get('/character');
+        // dd($response);
+        $response->assertStatus(200);
+    }
 }
