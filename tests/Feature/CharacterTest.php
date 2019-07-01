@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+
 use App\DndCharacter;
 
 class CharacterTest extends TestCase
@@ -48,11 +49,6 @@ class CharacterTest extends TestCase
         $response = $this->put("character/$character->id", [
             'level' => $new_level,
         ]);
-
-        if($response->exception)
-        {
-            throw $response->exception;
-        }
 
         // When
         $response->assertStatus(200);
