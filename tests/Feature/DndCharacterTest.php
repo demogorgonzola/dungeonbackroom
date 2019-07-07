@@ -16,12 +16,11 @@ class CharacterTest extends TestCase
      * @test
      * @return void
      */
-    public function can_create_a_character()
+    public function create_a_character()
     {
         // Given
         $character = [
             'name' => 'Great George',
-            'level' => 3,
             'class' => 'Druid',
         ];
 
@@ -37,7 +36,7 @@ class CharacterTest extends TestCase
      * @test
      * @return void
      */
-    public function can_change_a_characters_level()
+    public function change_a_characters_level()
     {
         // Given
         $character = factory(DndCharacter::class)->create([
@@ -62,10 +61,28 @@ class CharacterTest extends TestCase
      * @test
      * @return void
      */
-    public function can_display_many_characters()
+    public function display_many_characters()
     {
         $response = $this->get('/character');
-        // dd($response);
         $response->assertStatus(200);
+    }
+
+    /**
+     * @test
+     * @return void
+     */
+    public function add_xp_to_a_character()
+    {
+        $character = factory(DndCharacter::class)->create();
+
+            // error_log($character->id);
+
+        $this->put("character/$character->id", [
+            'xp-gain' => 100,
+        ]);
+
+        $this->assertDatabaseHas('dnd_characters', [
+            'xp' => 100,
+        ]);
     }
 }

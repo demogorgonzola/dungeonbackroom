@@ -24,7 +24,6 @@ $factory->define(DndCharacter::class, function (Faker $faker) {
 
     return [
         'name' => $faker->name,
-        'level' => $faker->numberBetween(1,20),
         'class' => $faker->randomElement($classes),
     ];
 });

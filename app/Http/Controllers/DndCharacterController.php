@@ -37,7 +37,6 @@ class DndCharacterController extends Controller
     {
         $character = new DndCharacter();
         $character->name = $request->input('name');
-        $character->level = $request->input('level');
         $character->class = $request->input('class');
         $character->save();
     }
@@ -73,7 +72,7 @@ class DndCharacterController extends Controller
      */
     public function update(Request $request, DndCharacter $character)
     {
-        $character->level = $request->input('level');
+        $character->xp += $request->input('xp-gain');
         $character->save();
     }
 

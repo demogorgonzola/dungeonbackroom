@@ -16,7 +16,7 @@ class CreateDndCharactersTable extends Migration
         Schema::create('dnd_characters', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('level');
+            $table->unsignedMediumInteger('xp')->default(0);
             $table->string('class');
             $table->timestamps();
         });
