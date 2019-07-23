@@ -18,3 +18,4 @@ Route::get('/', function () {
 //NOTE: the path name effects the type hinting in the controller,
 //makes a litte sense, look into it more
 Route::resource('character', 'DndCharacterController');
+Route::resource('item', 'ItemController');
