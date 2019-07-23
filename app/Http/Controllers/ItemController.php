@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Item;
 use Illuminate\Http\Request;
 use App\Character;
+use App\Logic\CharacterWeight as Weight;
 
 class ItemController extends Controller
 {
@@ -15,33 +16,33 @@ class ItemController extends Controller
      */
     public function index()
     {
+        //puke out the view data
         $items_by_character = Item::all()->groupBy('character.id');
-        $character_item_stats = $items_by_character->map(
-            function($items) {
-                $character = $items->first()->character;
-                $items_data = $items->map(function($item) {
-                    return $item->only('name','weight');
-                });
-                $carry_capacity = ($character->str * 15.0);
-                $current_carry = $items->sum('weight');
-                $encumbered = ($current_carry > $carry_capacity);
+        $character_item_stats = $items_by_character->map(function ($items) {
+            $character = $items->first()->character;
+            $simplified_items = $items->map(function ($item) {
+                return $item->only('name', 'weight');
+            });
+            $carry_capacity = Weight::carryCapacity($character->str);
+            $held_items_weight = Weight::totalWeightOfItems($items);
+            $encumbered = ($held_items_weight > $carry_capacity);
 
-                return collect([
-                    'name' => $character->name,
-                    'str' => $character->str,
-                    'items' => $items_data,
-                    'carry_capacity' => $carry_capacity,
-                    'current_carry' => $current_carry,
-                    'encumbered' => $encumbered,
-                ]);
-            }
-        );
+            return collect([
+                'name' => $character->name,
+                'str' => $character->str,
+                'items' => $simplified_items,
+                'carry_capacity' => $carry_capacity,
+                'current_carry' => $held_items_weight,
+                'encumbered' => $encumbered,
+            ]);
+        });
 
+        //build json response
         $response_data = collect([
             'character_item_stats' => $character_item_stats,
         ]);
 
-        return view('item.index', $response_data);
+        return view('item.index', $response_data); //TODO: JSONify this bitch
     }
 
     /**
@@ -66,8 +67,7 @@ class ItemController extends Controller
         if (!$items) {
             $items = [$request->all()];
         }
-        foreach($items as $item)
-        {
+        foreach ($items as $item) {
             $character = Character::find($item['character_id']);
 
             $db_item = new Item;

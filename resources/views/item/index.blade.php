@@ -5,8 +5,16 @@
 @section('content')
 <div class="">
     <ul>
-        @foreach($character_item_stats as $character_item_stat)
-        <div class="{{ $character_item_stat['encumbered'] ? 'notification is-warning' : '' }}">
+        @foreach($character_item_stats as $id => $character_item_stat)
+        <?php
+            $encumbered = $character_item_stat['encumbered'];
+
+            $character_class = 'unencumbered';
+            if($encumbered) {
+                $character_class = 'encumbered notification is-warning';
+            }
+        ?>
+        <div id='character-{{ $id }}' class='{{ $character_class }}'>
             <p>Name: {{ $character_item_stat['name'] }}</p>
             <p>Str Score: {{$character_item_stat['str'] }}</p>
             <ol>
@@ -16,8 +24,8 @@
             </ol>
             <p>Current Carry: {{ $character_item_stat['current_carry'] }}</p>
             <p>Carry Capacity: {{ $character_item_stat['carry_capacity'] }}</p>
-            <br>
         </div>
+        <br>
         @endforeach
     </ul>
 </div>

@@ -10,7 +10,7 @@ use App\Character;
 
 class ItemTest extends TestCase
 {
-    // use RefreshDatabase;
+    use RefreshDatabase;
 
     /**
      * @test
@@ -48,31 +48,27 @@ class ItemTest extends TestCase
     }
 
     /**
-     *
+     * @test
      *
      * @return void
      */
-    public function adhere_weight_restriction()
+    public function character_can_hold_up_to_capacity()
     {
         // Given
         $character = factory(Character::class)->create([
-            'str' => 12, //Carry Capacity: 180
+            'str' => 10,
         ]);
-        $items = factory(Item::class,10)->create([
-            'weight' => 18,
+        $item = factory(Item::class)->create([
+            'weight' => 150,
             'character_id' => $character->id,
-        ]); // Total Items Weight: 180
+        ]);
 
         // When
         $response = $this->get('/item');
 
         // Then
         $response->assertStatus(200);
-        $response->assertSee($character->name);
-        $items->each(function($item) use ($response) {
-            $response->assertSee($item->name);
-            $response->assertSee($item->weight);
-        });
+        $response->assertsee("id='character-{$character->id}' class='unencumbered");
     }
 
     /**
@@ -80,26 +76,22 @@ class ItemTest extends TestCase
      *
      * @return void
      */
-    public function violate_weight_restriction()
+    public function character_is_warned_when_carrying_beyond_capacity()
     {
         // Given
         $character = factory(Character::class)->create([
             'str' => 12, //Carry Capacity: 180
         ]);
-        $items = factory(Item::class,10)->create([
-            'weight' => 20,
+        $item = factory(Item::class)->create([
+            'weight' => 200,
             'character_id' => $character->id,
-        ]); // Total Items Weight: 200
+        ]);
 
         // When
         $response = $this->get('/item');
 
         // Then
         $response->assertStatus(200);
-        $response->assertSee($character->name);
-        $items->each(function($item) use ($response) {
-            $response->assertSee($item->name);
-            $response->assertSee($item->weight);
-        });
+        $response->assertsee("id='character-{$character->id}' class='encumbered");
     }
 }
