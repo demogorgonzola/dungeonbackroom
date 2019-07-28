@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 $factory->define(Character::class, function (Faker $faker) {
     return [
         'name' => $faker->unique()->name,
-        'str' => $faker->numberBetween(0,20),
+        'str' => $faker->numberBetween(0, 20),
     ];
 });
