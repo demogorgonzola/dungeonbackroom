@@ -14,7 +14,7 @@
                         <a class="navbar-item is-active">
                             Home
                         </a>
-                        <a class="navbar-item ">
+                        <a class="navbar-item" href="/character">
                             Characters
                         </a>
                         <span class="navbar-item">
@@ -47,7 +47,7 @@
                 <p class="level-item"><a>Stuff</a></p>
             </div>
             <div class="level-right has-text-centered">
-                <p class="level-item title is-3"><a>Character</a></p>
+                <p class="level-item title is-3"><a>{{ Session::get('character_name') ?? 'None' }}</a></p>
             </div>
         </nav>
     </div>

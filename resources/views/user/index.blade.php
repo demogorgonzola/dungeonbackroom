@@ -1,10 +1,8 @@
 @extends('layout')
 
 @section('content')
-<h1>These are some of the made user names...</h1>
-<ul>
-    @foreach($users as $user)
-    <li>{{ $user->name }}</li>
-    @endforeach
-</ul>
+    <div class="container">
+        <h1 class="title">Overview</h1>
+        <p><a href="#">This is where shit goes for a particular user</a></p>
+    </div>
 @endsection

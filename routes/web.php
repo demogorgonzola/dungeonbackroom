@@ -18,5 +18,5 @@ Route::get('/', function () {
 Route::resource('user', 'UserController');
 //NOTE: the path name effects the type hinting in the controller,
 //makes a litte sense, look into it more
-// Route::resource('character', 'CharacterController');
+Route::resource('character', 'CharacterController');
 Route::resource('item', 'ItemController');
