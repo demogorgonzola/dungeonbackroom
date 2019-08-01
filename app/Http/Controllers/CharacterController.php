@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Character;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CharacterController extends Controller
 {
+    /**
+     * [__construct description]
+     */
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +54,9 @@ class CharacterController extends Controller
         $character = new Character();
         $character->name = request('name');
         $character->str = request('str');
+        $character->user()->associate(Auth::user());
         $character->save();
+
 
         return redirect("/character/{$character->id}");
     }
@@ -81,7 +91,7 @@ class CharacterController extends Controller
             'str' => $character->str,
         ];
 
-        return view('character.show', $view_data);
+        return view('character.edit', $view_data);
     }
 
     /**
@@ -94,7 +104,8 @@ class CharacterController extends Controller
     public function update(Request $request, Character $character)
     {
         request()->validate([
-            'name' => ['required', 'unique:characters,name'],
+            'name' => ['required', "unique:characters,name,{$character->id}"],
+            'str' => ['required'],
         ]);
 
         $character->name = request('name');

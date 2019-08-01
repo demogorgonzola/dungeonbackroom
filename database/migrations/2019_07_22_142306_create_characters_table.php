@@ -17,6 +17,9 @@ class CreateCharactersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->unsignedTinyInteger('str');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

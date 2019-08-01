@@ -121,4 +121,10 @@ class UserController extends Controller
     {
         //
     }
+
+
+    public function updateMainCharacter(User $user, Character $character)
+    {
+
+    }
 }
