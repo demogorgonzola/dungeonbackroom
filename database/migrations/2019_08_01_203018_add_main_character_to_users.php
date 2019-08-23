@@ -14,7 +14,7 @@ class AddMainCharacterToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('main_character_id');
+            $table->unsignedBigInteger('main_character_id')->nullable();
             $table->foreign('main_character_id')->references('id')->on('characters');
         });
     }
