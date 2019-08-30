@@ -10,7 +10,7 @@ use App\Character;
 
 class ItemTest extends TestCase
 {
-    // use RefreshDatabase;
+    use RefreshDatabase;
 
     /**
      * @test
@@ -40,7 +40,7 @@ class ItemTest extends TestCase
         // Given
         $items = factory(Item::class,5)->make();
 
-        $response = $this->post('/item', [ 'items' => $items->toArray() ]);
+        $this->post('/item', [ 'items' => $items->toArray() ]);
 
         $items->each(function($item) {
             $this->assertDatabaseHas('items', $item->toArray());
@@ -49,6 +49,7 @@ class ItemTest extends TestCase
 
     /**
      * @test
+     *
      * @return void
      */
     public function store_many_items_to_same_user()
@@ -59,7 +60,7 @@ class ItemTest extends TestCase
             'character_id' => $character->id,
         ]);
 
-        $response = $this->post('/item', [ 'items' => $items->toArray() ]);
+        $this->post('/item', [ 'items' => $items->toArray() ]);
 
         $items->each(function($item) {
             $this->assertDatabaseHas('items', $item->toArray());
@@ -101,7 +102,7 @@ class ItemTest extends TestCase
         $character = factory(Character::class)->create([
             'str' => 12, //Carry Capacity: 180
         ]);
-        $item = factory(Item::class)->create([
+        factory(Item::class)->create([
             'weight' => 200,
             'character_id' => $character->id,
         ]);

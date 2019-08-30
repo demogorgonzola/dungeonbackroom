@@ -27,7 +27,7 @@ class AddMainCharacterToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $this->dropForeign('main_character_id');
+            $table->dropForeign('main_character_id');
         });
     }
 }
