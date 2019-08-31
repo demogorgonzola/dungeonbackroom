@@ -12,7 +12,7 @@
         "test:unit": "echo 'Running Unit Tests...' ; ./vendor/bin/phpunit tests/Unit --color=always || true",
         "test:feature": "echo 'Running Feature Tests...' ; ./vendor/bin/phpunit tests/Feature --color=always || true",
         "test:browser": "echo 'Running Browser Tests...' ; ./utilscripts/testbrowser.sh || true",
-        "test": "npm run --silent test:unit ; npm run --silent test:feature ; npm run --silent test:browser",
+        "test": "npm run --silent test:unit ; npm run --silent test:feature",
         "watch:test": "watch --color npm run --silent test"
     },
     "devDependencies": {
