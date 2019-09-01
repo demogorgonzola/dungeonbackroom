@@ -1,4 +1,4 @@
-@extends('layout.header')
+@extends('layouts.header')
 
 @section('head')
 <a class="navbar-item is-active" href="/home">
@@ -8,7 +8,7 @@
     Characters
 </a>
 <span class="navbar-item">
-    @include('partials.account')
+    @include('partials.account-widget')
 </span>
 @endsection
 
@@ -18,7 +18,10 @@
 @endsection
 
 @section('footer-left')
+<p class="level-item is-active"><a href="/character">Overview</a></p>
+<p class="level-item"><a href="/item">Stuff</a></p>
 @endsection
 
 @section('footer-right')
+<p class="level-item title is-3"><a>{{ Session::get('character_name') ?? 'None' }}</a></p>
 @endsection

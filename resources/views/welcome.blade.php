@@ -4,6 +4,6 @@
 
 @section('content')
 <div class="">
-  <p>This is the Homepage</p>
+  <p>This is the Welcome</p>
 </div>
 @endsection
