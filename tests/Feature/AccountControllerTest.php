@@ -45,4 +45,24 @@ class AccountControllerTest extends TestCase
         $this->assertArrayHasKey('name', $response_data);
         $this->assertArrayHasKey('email', $response_data);
     }
+
+    /**
+     * @test
+     *
+     * @return void
+     */
+    public function view_account_edit()
+    {
+        // Given
+        $user = factory(User::class)->create();
+
+        // When
+        $response = $this->actingAs($user)->get('/account/edit');
+        $response_data = $response->getOriginalContent()->getData();
+
+        // Then
+        $response->assertStatus(200);
+        $this->assertArrayHasKey('name', $response_data);
+        $this->assertArrayHasKey('email', $response_data);
+    }
 }

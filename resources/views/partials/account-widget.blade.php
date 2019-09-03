@@ -2,7 +2,7 @@
     $account_url = route('login');
     $account_text = 'Login';
     if(!Auth::guest()) {
-        $account_url = route('account');
+        $account_url = route('account.index');
         $account_text = Auth::user()->name;
     }
 ?>

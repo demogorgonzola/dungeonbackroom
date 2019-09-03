@@ -2,39 +2,32 @@
 
 @section('content')
 <div class="container">
-    <nav class="level">
-        <div class='level-left'>
-            <div class='level-item'>
-                <h1 class="title">
-                    {{ __('Account Information') }}
-                </h1>
-            </div>
-        </div>
-        <div class='level-right'>
-            <div class='level-item'>
-                @include('partials.logout');
-            </div>
-        </div>
-    </nav>
-    <div class="box">
-        <div class="field">
-            <label class="label">
-                {{ __('Display Name') }}
-            </label>
-            <p>
-                {{ $name }}
-            </p>
-        </div>
-
-        <div class="field">
-            <label class="label">
-                {{ __('Email') }}
-            </label>
-            <p>
-                {{ $email }}
-            </p>
-        </div>
+    <div class="level">
+        <span class="level-left">
+            <h1 class="title">
+                {{ __('Account Information') }}
+            </h1>
+        </span>
+        <span class="level-right">
+            @include('partials.logout')
+        </span>
     </div>
-
+    <div class="box">
+        @component('partials.field', [
+            'label' => __('Display Name'),
+            'icon' => 'user',
+        ])
+            <input class="input info" name="name" value="{{ $name }}" disabled>
+        @endcomponent
+        @component('partials.field', [
+            'label' => __('Email'),
+            'icon' => 'envelope'
+        ])
+            <input class="input info" name="email" value="{{ $email }}" disabled>
+        @endcomponent
+        <a class="button is-link" href="{{ route('account.edit') }}">
+            {{ __('Edit') }}
+        </a>
+    </div>
 </div>
 @endsection

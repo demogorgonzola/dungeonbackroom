@@ -1,0 +1,14 @@
+.control input.info {
+    border: none;
+    color: inherit;
+    background-color: inherit;
+    cursor: inherit;
+}
+
+.control input.info + .icon {
+    color: hsl(0, 0%, 29%);
+}
+
+.box, .button, .file-cta, .file-name, .input, .pagination-ellipsis, .pagination-link, .pagination-next, .pagination-previous, .select select, .textarea {
+    border-radius: 20px !important;
+}

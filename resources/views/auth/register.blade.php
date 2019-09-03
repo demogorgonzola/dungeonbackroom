@@ -2,8 +2,24 @@
 
 @section('content')
 <div class="container">
-    <h1 class="title">So you want to be a nerd...</h1>
-    <form class="" action="{{ route('register') }}" method="POST">
+    <div class="tabs">
+            <ul>
+                <li>
+                    <a class="title" href="{{ route('login') }}">
+                            {{ __('Login') }}
+                    </a>
+                </li>
+                <li class="is-active">
+                    @if (Route::has('register'))
+                        <a class="title">
+                            {{ __('Register') }}
+                        </a>
+                    @endif
+                </li>
+            </ul>
+        </div>
+
+    <form class="box" action="{{ route('register') }}" method="POST">
         @csrf
 
         @component('partials.field', ['label' => 'User Name', 'icon' => 'user'])
@@ -23,7 +39,7 @@
         @endcomponent
 
         @component('partials.field')
-        <button class="button is-link" type="submit">Create!</button>
+        <button class="button is-link is-medium" type="submit">Create!</button>
         @endcomponent
 
         @include('partials.error')

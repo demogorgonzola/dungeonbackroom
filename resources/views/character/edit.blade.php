@@ -16,7 +16,7 @@
         @endcomponent
 
         @component('partials.field')
-        <button class="button is-link" type="submit">Update!</button>
+        <input class="button is-link" type="submit" value="{{ __('Update!') }}">
         @endcomponent
 
         @include('partials.error')
