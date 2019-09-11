@@ -1,4 +1,4 @@
-<section class="hero is-small is-dark is-bold">
+<section class="hero is-small is-bold">
     <div class="hero-head">
         <div class="container">
             <nav class="navbar">

@@ -6,9 +6,14 @@
 }
 
 .control input.info + .icon {
-    color: hsl(0, 0%, 29%);
+    color: $grey-dark;
 }
 
-.box, .button, .file-cta, .file-name, .input, .pagination-ellipsis, .pagination-link, .pagination-next, .pagination-previous, .select select, .textarea {
-    border-radius: 20px !important;
+body {
+    min-height: 100%;
+    background-image: linear-gradient(to top, #0072ba, #00a5d9, #1dd9f0);
+}
+
+html {
+    height: 100%;
 }

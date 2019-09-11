@@ -2,22 +2,23 @@
 
 @section('content')
 <div class="container">
-    <div class="tabs">
-        <ul>
-            <li class="is-active">
-                <a class="title">
-                        {{ __('Login') }}
-                </a>
-            </li>
-            <li>
-                @if (Route::has('register'))
-                    <a class="title" href="{{ route('register') }}">
-                        {{ __('Register') }}
-                    </a>
-                @endif
-            </li>
-        </ul>
-    </div>
+    @component('partials.tabs')
+        @component('partials.tab', [
+            'is_active' => true,
+            'class' => 'title',
+            'route' => route('login'),
+        ])
+            {{ __('Login') }}
+        @endcomponent
+        @if (Route::has('register'))
+            @component('partials.tab', [
+                'class' => 'title',
+                'route' => route('register'),
+            ])
+                {{ __('Register') }}
+            @endcomponent
+        @endif
+    @endcomponent
 
     <form class="box" method="POST" action="{{ route('login') }}">
         @csrf
@@ -26,7 +27,7 @@
             'label' => 'Email Address',
             'icon' => 'envelope',
         ])
-            <input class="input"
+            <input class="input @error('email') is-danger @enderror"
                 type="email"
                 name="email"
                 value="{{ old('email') }}"
@@ -53,19 +54,13 @@
             </label>
         @endcomponent
 
-        @component('partials.field')
-            <div class="level">
-                <input class="button is-primary is-medium"
-                    type="submit"
-                    value="{{ __('Login') }}">
+        <div class="level">
+            <input class="button is-primary is-medium"
+                type="submit"
+                value="{{ __('Login') }}">
 
-                @if (Route::has('password.request'))
-                    <a class="is-link is-small" href="{{ route('password.request') }}">
-                        {{ __('Forgot Your Password?') }}
-                    </a>
-                @endif
-            </div>
-        @endcomponent
+            @include('partials.reset-widget')
+        </div>
     </form>
 </div>
 @endsection
