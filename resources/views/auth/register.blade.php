@@ -1,14 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+<!-- Account Register Page -->
 <div class="container">
+    <!-- Login/Register -->
     @component('partials.tabs')
+        <!-- Login -->
         @component('partials.tab', [
             'class' => 'title',
             'route' => route('login'),
         ])
             {{ __('Login') }}
         @endcomponent
+
+        <!-- Register -->
         @if (Route::has('register'))
             @component('partials.tab', [
                 'is_active' => true,
@@ -20,9 +25,11 @@
         @endif
     @endcomponent
 
+    <!-- Register an account with the given fields. -->
     <form class="box" action="{{ route('register') }}" method="POST">
         @csrf
 
+        <!-- Name Field -->
         @component('partials.field', ['label' => 'User Name', 'icon' => 'user'])
             <input class="input"
                 type="text"
@@ -31,6 +38,7 @@
                 required>
         @endcomponent
 
+        <!-- Email Field -->
         @component('partials.field', ['label' => 'Email', 'icon' => 'envelope'])
             <input class="input"
                 type="email"
@@ -39,6 +47,7 @@
                 required>
         @endcomponent
 
+        <!-- Password Field -->
         @component('partials.field', ['label' => 'Password', 'icon' => 'lock'])
             <input class="input"
                 type="password"
@@ -47,6 +56,7 @@
                 required>
         @endcomponent
 
+        <!-- Password Confirmation Field -->
         @component('partials.field', ['icon' => 'check-double'])
             <input class="input"
                 type="password"
@@ -55,6 +65,7 @@
                 required>
         @endcomponent
 
+        <!-- Submit -->
         <input class="button is-primary is-medium"
             type="submit"
             value="Create!">

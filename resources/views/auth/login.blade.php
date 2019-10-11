@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<!-- Account Login Page -->
 <div class="container">
+    <!-- Login/Register -->
     @component('partials.tabs')
+        <!-- Login -->
         @component('partials.tab', [
             'is_active' => true,
             'class' => 'title',
@@ -10,6 +13,8 @@
         ])
             {{ __('Login') }}
         @endcomponent
+
+        <!-- Register -->
         @if (Route::has('register'))
             @component('partials.tab', [
                 'class' => 'title',
@@ -20,9 +25,11 @@
         @endif
     @endcomponent
 
+    <!-- Login to an exisiting account. -->
     <form class="box" method="POST" action="{{ route('login') }}">
         @csrf
 
+        <!-- Email Field -->
         @component('partials.field' ,[
             'label' => 'Email Address',
             'icon' => 'envelope',
@@ -36,6 +43,7 @@
                 autofocus>
         @endcomponent
 
+        <!-- Password Field -->
         @component('partials.field', [
             'label' => 'Password',
             'icon' => 'lock',
@@ -47,6 +55,7 @@
                 required>
         @endcomponent
 
+        <!-- Remember Me Field -->
         @component('partials.field')
             <label class="checkbox">
                 <input type="checkbox" name="remember">
@@ -54,11 +63,14 @@
             </label>
         @endcomponent
 
+        <!-- Submit/Reset -->
         <div class="level">
+            <!-- Submit -->
             <input class="button is-primary is-medium"
                 type="submit"
                 value="{{ __('Login') }}">
 
+            <!-- Reset -->
             @include('partials.reset-widget')
         </div>
     </form>

@@ -1,4 +1,6 @@
+<!-- Banner header -->
 <section class="hero is-small is-bold">
+    <!-- Head -->
     <div class="hero-head">
         <div class="container">
             <nav class="navbar">
@@ -11,6 +13,7 @@
         </div>
     </div>
 
+    <!-- Body -->
     <div class="hero-body">
         <div class="container">
             <div class="column">
@@ -19,6 +22,7 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <div class="hero-foot">
         <nav class="level tabs">
             <div class="level-left has-text-centered">

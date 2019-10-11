@@ -1,3 +1,4 @@
+<!-- Error List Display -->
 @if($errors->any())
 <div class="notification is-danger">
     <ul>
