@@ -22,6 +22,20 @@ Afterwards you can create both the database and user that will access it...
 
 _Note_: Using ```sudo``` is never a good default course of execution. Create a user that corresponds with the user name you logged into your computer with and supply it a solid password. Give it admin privileges and use it as your master user. Using step ```2``` and below, you can achieve this be replacing ```<DATABASE_NAME>``` with ```*```. Just be sure that the master user and the user the project is using are seperate.
 
+### Install additional PHP Extensions
+
+Check wether you have PHP installed via ```php --version```. If it doesn't exist then install it via...
+* ```sudo apt update && sudo apt install php``` (Ubuntu)
+
+Install the following PHP extensions to support laravel...
+* ```php-bcmath```
+* ```php-ctype```
+* ```php-json```
+* ```php-mbstring```
+* ```php-pdo```
+* ```php-tokenizer```
+* ```php-xml```
+
 ### Setup the project in a Development Environment
 
 In the projects main directory download dependencies and create an environment file...
